@@ -11,10 +11,11 @@ Permalink Maker is a piece of javascript designed to be invoked as a bookmarklet
 Usage
 ---------------------
 To use Permalink Maker:
+
 1. Save the javascript file to your server.
 2. Edit the locally customisable strings at the top of the file.
 3. Invoke it by creating a bookmarklet in your browser pointing to the following location (replacing the s.src url with the correct path):
-	javascript:(function(){var%20s=document.createElement('script');s.id='permaScript';s.src='http://www.yourdomain.com/path/to/permalink-maker.js';document.body.appendChild(s);})();
+	`javascript:(function(){var%20s=document.createElement('script');s.id='permaScript';s.src='http://www.yourdomain.com/path/to/permalink-maker.js';document.body.appendChild(s);})();`
 
 
 Known limitations
