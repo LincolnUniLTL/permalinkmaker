@@ -16,7 +16,7 @@ function(){
   
   // Array of: regexp to match, string to prepend, and string to strip from result 
   var regexp = [];
-  regexp.push([/10\.\d{3,}(?:\.\d+)*[\/.][^'"<>,\s]*/,proxy+'http://dx.doi.org/','']); // DOIs: NB will miss DOIs with '"<>,\s
+  regexp.push([/10\.\d{3,}(?:\.\d+)*[\/.][^'"<>,&\s]*/,proxy+'http://dx.doi.org/','']); // DOIs: NB will miss DOIs with '"<>,&\s
   regexp.push([/http:\/\/hdl\.handle\.net\/\w+\/\w+/,'','']); // Handles
   regexp.push([/\"bkey\d+/,catalogue,'"bkey']); // Horizon catalogue records
   regexp.push([/[^"]*" class="EXLResultRecordId/,catalogue,'" class="EXLResultRecordId']); // Primo catalogue records
