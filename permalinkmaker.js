@@ -5,10 +5,11 @@ function(){
   var catalogue = ''; // Library catalogue bib id search url, eg:
                       // Voyager: http://catalogue.lincoln.ac.nz/cgi-bin/Pwebrecon.cgi?BBID=
 					  // Horizon: http://ipac.canterbury.ac.nz/ipac20/ipac.jsp?index=BIB&term=
+					  // Primo: http://primo-direct-apac.hosted.exlibrisgroup.com/LIN:
 					  // Other catalogue types will also need a line created under either the regexp or domsearch array below.
   var email = '';     // Contact address for users to email where no permalink found
   var instructions = 'Select and copy the following link: ';
-  var error = 'Sorry, no permalink could be found. ';
+  var error = 'Sorry, no permalink could be found. Hi there.';
   if (email != '') {
     error = error + 'For more help, and to help us improve this tool, please email: <a href="mailto:' + email + '?subject=Permalink%20maker&body=Permalink%20Maker%20can\'t%20find%20a%20permalink%20on%20the%20following%20page:%20' + location.href + '">' + email + '</a>';
 	}
@@ -18,7 +19,8 @@ function(){
   regexp.push([/10\.\d{3,}(?:\.\d+)*[\/.][^'"<>,\s]*/,proxy+'http://dx.doi.org/','']); // DOIs: NB will miss DOIs with '"<>,\s
   regexp.push([/http:\/\/hdl\.handle\.net\/\w+\/\w+/,'','']); // Handles
   regexp.push([/\"bkey\d+/,catalogue,'"bkey']); // Horizon catalogue records
-
+  regexp.push([/[^"]*" class="EXLResultRecordId/,catalogue,'" class="EXLResultRecordId']); // Primo catalogue records
+  
   // Array of: tagname, name, link to prepend
   var domsearch = [];
   domsearch.push(['input','BIB','value',catalogue]); // Voyager catalogue records
