@@ -9,17 +9,28 @@ Permalink Maker is a piece of javascript designed to be invoked as a bookmarklet
 * Wikipedia articles
 * Wordpress pages
 
+Optionally it can be set to log usage in csv format, for each click saving:
+* date/time
+* the url of the page the user is on
+* the permalink returned
+
  
 Usage
 ---------------------
 To use Permalink Maker:
 
-1. Save the javascript file to your server.
+1. Save the permalinkmaker.js file to your server.
 2. Edit the locally customisable strings at the top of the file.
 3. Invoke it by creating a bookmarklet in your browser pointing to the following location (replacing the s.src url with the correct path):
-	`javascript:(function(){var%20s=document.createElement('script');s.id='permaScript';s.src='http://www.yourdomain.com/path/to/permalink-maker.js';document.body.appendChild(s);})();`
+	`javascript:(function(){var%20s=document.createElement('script');s.id='permaScript';s.src='https://www.yourdomain.com/path/to/permalinkmaker.js';document.body.appendChild(s);})();`
 
 An example implementation is at https://ltl.lincoln.ac.nz/?p=3776
+
+To log usage (eg for troubleshooting):
+
+1. You'll need PHP on your server.
+2. Save the permalinkmaker-logging.js.php file to a folder which has appropriate read/write permissions. This folder is where the log will be created.
+3. Paste the full path/URL for this file into the `logscript` variable at the top of `permalinkmaker.js`.
 
 
 Known limitations

@@ -14,6 +14,7 @@ function(){
   if (email != '') {
     error = error + 'For more help, and to help us improve this tool, please email: <a href="mailto:' + email + '?subject=Permalink%20maker&body=Permalink%20Maker%20can\'t%20find%20a%20permalink%20on%20the%20following%20page:%20' + location.href + '">' + email + '</a>';
 	}
+  var logscript = ''; // To log usage, include the full path to the script eg https://www.yourdomain.com/path/to/permalinkmaker-logging.js.php
 
 
 /* Additional sources can be added in one of the following arrays if you're technically minded */
@@ -70,7 +71,7 @@ function(){
   }
 
   if (!link) {
-    for(i=0;i<useurl.length;i++) { // Creates permalinks based on DOM
+    for(i=0;i<useurl.length;i++) { // Creates permalinks based on URL
 	  var url = location.href;
 	  if(useurl[i][0].test(url)) {
 	    var docID = useurl[i][0].exec(url)[0];
@@ -122,5 +123,14 @@ function(){
     overlayCSS.innerHTML = theStyle;
   }
   document.body.appendChild(overlayCSS);
+
+  // Logs usage details (time and urls) for troubleshooting and development
+  if (logscript != '') {
+    var l=document.createElement('script');
+    l.id='permaUsage';
+    l.src=logscript+'?source='+encodeURIComponent(location.href)+'&permalink='+encodeURIComponent(link);
+    document.body.appendChild(l);
+    document.body.removeChild(document.getElementById(l.id));
+  }
 }
 )()
